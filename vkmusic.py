@@ -5,14 +5,19 @@ import getpass
 import os
 import vk
 
-APPLICATION_ID = '5538517'
+# Id for our VK application
+VK_APPLICATION_ID = '5538517'
+
+# VK API version
+API_VERSION = '5.52'
+
 login = input('Enter your login: ')
 password = getpass.getpass('Enter your password: ')
-session = vk.AuthSession(app_id=APPLICATION_ID,
+session = vk.AuthSession(app_id=VK_APPLICATION_ID,
                          user_login=login,
                          user_password=password,
                          scope='audio')
-api = vk.API(session, v='5.52', lang='en')
+api = vk.API(session, v=API_VERSION, lang='en')
 files = api.audio.get()
 files_count = files['count']
 root = os.path.realpath(os.path.dirname(__file__))
